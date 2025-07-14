@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 import com.example.demo.dto.EmployeeDto;
 import com.example.demo.service.EmployeeService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class EmployeeController {
 
     // Build Add Employee REST API
     @PostMapping
-    public ResponseEntity<EmployeeDto> createEmployee(@RequestBody EmployeeDto employeeDto){
+    public ResponseEntity<EmployeeDto> createEmployee(@RequestBody @Valid EmployeeDto employeeDto){
         EmployeeDto saveEmployeeDto = employeeService.createEmployee(employeeDto);
         return new ResponseEntity<>(saveEmployeeDto, HttpStatus.CREATED);
     }
